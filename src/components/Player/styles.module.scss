@@ -1,7 +1,7 @@
 .playerContainer {
-    width: 26.5rem;
+    padding: 2rem 2rem;
+    width: 25.5rem;
     height: 100vh;
-    padding: 3rem 4rem;
 
     background-color: var(--purple-500);
     color: var(--white);
@@ -18,7 +18,7 @@
     }
     strong {
         font-family: Lexend sans-serif;
-        font-weight: 600
+        font-weight: 600;
     }
 
     footer {
@@ -83,8 +83,4 @@
             background: var(--purple-400);
         }
     }
-}
-
-.playButton {
-
 }
