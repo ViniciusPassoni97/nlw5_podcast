@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { api } from '../services/api';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import Link from 'next/link';
+
 import { convertDurarionToTime } from '../utils/convertDurarionToTime';
 import styled from './home.module.scss';
 
@@ -40,7 +42,9 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
                 />
 
                 <div className={styled.episodeDetails}>
-                  <a href=''>{episode.title}</a>
+                  <Link href={`/episode/${episode.id}`}>
+                    <a >{episode.title}</a>
+                  </Link>
                   <p>{episode.members}</p>
                   <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
@@ -57,12 +61,14 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
         <h2>Todos episódios</h2>
         <table cellSpacing={0}>
           <thead>
-            <th></th>
-            <th>Podcast</th>
-            <th>Integrantes</th>
-            <th style={{width:100}}>Data</th>
-            <th>Duração</th>
-            <th></th>
+            <tr>
+              <th></th>
+              <th>Podcast</th>
+              <th>Integrantes</th>
+              <th style={{ width: 100 }}>Data</th>
+              <th>Duração</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
             {allEpisodes.map(episode => {
@@ -78,7 +84,9 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
                     />
                   </td>
                   <td>
-                    <a href="">{episode.title}</a>
+                    <Link href={`/episode/${episode.id}`}>
+                      <a>{episode.title}</a>
+                    </Link>
                   </td>
                   <td>
                     {episode.members}
