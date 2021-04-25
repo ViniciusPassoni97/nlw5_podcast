@@ -7,6 +7,8 @@ import Link from 'next/link';
 
 import { convertDurarionToTime } from '../utils/convertDurarionToTime';
 import styled from './home.module.scss';
+import { useContext } from 'react';
+import { PlayerContext } from '../hooks/PlayerContext';
 
 type Episodes = {
   id: string;
@@ -25,6 +27,8 @@ type propsGetStaticProps = {
 }
 
 export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProps) {
+  const { play } = useContext(PlayerContext);
+
   return (
     <div className={styled.homePage}>
       <section className={styled.latestEpisodes}>
@@ -49,7 +53,7 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
                   <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
                 </div>
-                <button type="button">
+                <button type="button" onClick={() => play(episode)}>
                   <img src='/play-green.svg' alt='Tocar episódio' />
                 </button>
               </li>
