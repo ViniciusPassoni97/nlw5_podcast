@@ -19,7 +19,9 @@ export function Player() {
         hasNext,
         hasPrevious,
         isLooping,
-        toggleLoop
+        toggleLoop,
+        isShuffling,
+        toggleShuffling
     } = player;
     useEffect(() => {
         if (!audioRef.current) {
@@ -81,7 +83,12 @@ export function Player() {
                     />
                 )}
                 <div className={styles.buttons}>
-                    <button type="button" disabled={!episode}>
+                    <button 
+                        type="button" 
+                        disabled={!episode || episodeList.length === 1}
+                        onClick={toggleShuffling}
+                        className={isShuffling ? styles.isActive : ''}
+                    >
                         <img src="/shuffle.svg" alt="Embaralhar" />
                     </button>
                     <button type="button" onClick={playPrevious}disabled={!episode || !hasPrevious}>
