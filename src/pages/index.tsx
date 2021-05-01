@@ -27,14 +27,14 @@ type propsGetStaticProps = {
 }
 
 export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProps) {
-  const { play } = useContext(PlayerContext);
-
+  const { playList } = useContext(PlayerContext);
+  const episodesList = [...latestEpisodes, ...allEpisodes];
   return (
     <div className={styled.homePage}>
       <section className={styled.latestEpisodes}>
         <h2>Últimos lançamentos</h2>
         <ul>
-          {latestEpisodes.map(episode => {
+          {latestEpisodes.map((episode, index) => {
             return (
               <li key={episode.id}>
                 <Image
@@ -53,7 +53,7 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
                   <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
                 </div>
-                <button type="button" onClick={() => play(episode)}>
+                <button type="button" onClick={() => playList(episodesList, index)}>
                   <img src='/play-green.svg' alt='Tocar episódio' />
                 </button>
               </li>
@@ -75,7 +75,7 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
             </tr>
           </thead>
           <tbody>
-            {allEpisodes.map(episode => {
+            {allEpisodes.map((episode, index) => {
               return (
                 <tr key={episode.id}>
                   <td width={72}>
@@ -102,7 +102,7 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
                     {episode.durationAsString}
                   </td>
                   <td>
-                    <button type="button">
+                    <button type="button" onClick={() => playList(episodesList, index + latestEpisodes.length)}>
                       <img src="/play-green.svg" alt="Tocar Episódio" />
                     </button>
                   </td>

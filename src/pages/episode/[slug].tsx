@@ -6,6 +6,8 @@ import { api } from '../../services/api';
 import { convertDurarionToTime } from '../../utils/convertDurarionToTime';
 import styles from './episode.module.scss';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { PlayerContext } from '../../hooks/PlayerContext';
 
 type Episodes = {
     id: string;
@@ -23,7 +25,7 @@ type propsGetStaticProps = {
 }
 
 export default function Episodes({ episode }: propsGetStaticProps) {
-
+    const { play } = useContext(PlayerContext)
     return (
         <div className={styles.containerEpisodes}>
             <div className={styles.thumbnailContainer}>
@@ -38,7 +40,7 @@ export default function Episodes({ episode }: propsGetStaticProps) {
                     src={episode.thumbnail}
                     objectFit="cover"
                 />
-                <button type="button">
+                <button type="button" onClick={()=>{play(episode)}}>
                     <img src="/play.svg" alt="Tocar episódio" />
                 </button>
             </div>
