@@ -8,6 +8,7 @@ import styles from './episode.module.scss';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { PlayerContext } from '../../hooks/PlayerContext';
+import Head from 'next/head';
 
 type Episodes = {
     id: string;
@@ -28,6 +29,9 @@ export default function Episodes({ episode }: propsGetStaticProps) {
     const { play } = useContext(PlayerContext)
     return (
         <div className={styles.containerEpisodes}>
+            <Head>
+                <title>{episode.title}</title>
+            </Head>
             <div className={styles.thumbnailContainer}>
                 <Link href="/">
                     <button type="button">

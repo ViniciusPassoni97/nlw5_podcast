@@ -4,6 +4,7 @@ import { api } from '../services/api';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import { convertDurarionToTime } from '../utils/convertDurarionToTime';
 import styled from './home.module.scss';
@@ -31,6 +32,9 @@ export default function Home({ allEpisodes, latestEpisodes }: propsGetStaticProp
   const episodesList = [...latestEpisodes, ...allEpisodes];
   return (
     <div className={styled.homePage}>
+      <Head>
+        <title>Home | Podcaster</title>
+      </Head>
       <section className={styled.latestEpisodes}>
         <h2>Últimos lançamentos</h2>
         <ul>
